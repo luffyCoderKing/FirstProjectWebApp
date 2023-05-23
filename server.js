@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');  //importing this router into the server since it doesn't know it exist yet
 const authorRouter = require('./routes/authors');
+const bookRouter = require('./routes/books');
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -26,5 +27,6 @@ db.once('open', () => console.error('Connected to Mongoose'))   //this will run 
 
 app.use('/', indexRouter);
 app.use('/authors', authorRouter);  //the routes should look like this 'authors/new' 
+app.use('/books', bookRouter);
 
 app.listen(process.env.PORT || 3000);    //3000 is for local server since env.PORT doesn't return anything since we didn't declared anything in the env
