@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const indexRouter = require('./routes/index');  //importing this router into the server since it doesn't know it exist yet
 const authorRouter = require('./routes/authors');
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');    //every single layout file is going to be put inside this layout file, in order not to duplicate all the beginning and ending html such as the header and footer
 app.use(expressLayouts); //to use expressLayouts
+app.use(methodOverride('_method'));
 app.use(express.static('public'));   //to tell where our public files will be, such as css file, javascript, images
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
 
